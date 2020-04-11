@@ -8,6 +8,9 @@ import { User } from '../interfaces/user';
 })
 export class HomeComponent implements OnInit {
 
+  friends: User[];
+
+
   constructor() {
 
     let myUser: User = {
@@ -26,7 +29,14 @@ export class HomeComponent implements OnInit {
 
     ];
 
+    let usuario1: User = { nick: 'Eduardo', subnick: 'Mi mensaje personal', age: 28, email: 'eduardo@platzi.com', friend: true, uid: 2 };
 
+    let usuario2: User = { nick: 'Yuliana', subnick: 'Mi mensaje personal', age: 25, email: 'yuliana@platzi.com', friend: true, uid: 2 };
+
+    let usuario3: User = { nick: 'Freddy', subnick: 'Mi mensaje personal', age: 28, email: 'freddy@platzi.com', friend: false, uid: 2 };
+
+
+    this.friends = [usuario1, usuario2, usuario3]
 
 
   }
