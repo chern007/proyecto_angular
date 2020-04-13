@@ -9,6 +9,10 @@ import { ConversationComponent } from './conversation/conversation.component';
 import { ProfileComponent } from './profile/profile.component';
 import { Routes, RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
+import { SearchPipe } from './pipes/search';
+import { FormsModule } from '@angular/forms';
+
+
 const appRoutes: Routes = [
   {path:'', component:HomeComponent},
   {path:'home', component:HomeComponent},
@@ -24,11 +28,13 @@ const appRoutes: Routes = [
     HomeComponent,
     ConversationComponent,
     ProfileComponent,
-    MenuComponent
+    MenuComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
