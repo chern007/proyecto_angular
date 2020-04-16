@@ -23,9 +23,39 @@
     
 }
 
+.avatarImageUser{
+
+    height: 100%;
+}
+
+.burbujaIn{
+
+    border-radius: 5px;
+    background-color: rgba(44, 199, 219, 0.75);
+    width: 90% ;
+    float: left;
+    margin-bottom: 10px;
+
+}
+
+.burbujaOut{
+    
+    border-radius: 5px;
+    background-color: rgba(102, 238, 170, 0.75);
+    width: 90% ;
+    float: right;
+    margin-bottom: 10px;
+
+}
+
 
 .he20{
     
     height: 20%;
 
+}
+
+.enLinea{
+
+    display: inline-block;
 }
