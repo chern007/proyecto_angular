@@ -1,0 +1,31 @@
+#conversationContainer{
+
+    background-image: url("/assets/img/msnbg.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+}
+
+#conversation{
+    margin:5px; 
+    padding:5px;
+    height: 100%;
+    max-height: 100%;
+    width: 100%;
+    overflow: auto; 
+    text-align:justify; 
+
+}
+
+.he80{
+
+    height: 80%;
+    
+}
+
+
+.he20{
+    
+    height: 20%;
+
+}
