@@ -29,25 +29,21 @@
                 <p *ngIf="operation == 'login'">No tienes cuenta? <a (click)="operation = 'register'">Registrase</a></p>
                 <div class="borderedContainer">
 
-                    <input class="form-control marbo15" type="email" placeholder="Ingrese email">
-                    <input class="form-control marbo15" type="password" placeholder="Ingrese contraseña">
+                    <input [(ngModel)]="email" class="form-control marbo15" type="email" placeholder="Ingrese email">
+                    <input [(ngModel)]="password" class="form-control marbo15" type="password" placeholder="Ingrese contraseña">
                     <input *ngIf="operation == 'register'" class="form-control marbo15" type="text"
                         placeholder="Ingrese nick">
 
                 </div>
                 <div class="center marto15">
-                    <a *ngIf="operation == 'login'" class="btn btn-primary buttonBackground">Iniciar Sesión</a>
-                    <a *ngIf="operation == 'register'" class="btn btn-primary buttonBackground">Registrarme</a>
+                    <a (click)="login()" *ngIf="operation == 'login'" class="btn btn-primary buttonBackground">Iniciar Sesión</a>
+                    <a (click)="register()" *ngIf="operation == 'register'" class="btn btn-primary buttonBackground">Registrarme</a>
                 </div>
 
             </div>
 
         </div>
 
-
-
     </div>
-
-
 
 </div>
