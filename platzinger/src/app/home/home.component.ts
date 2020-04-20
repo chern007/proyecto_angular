@@ -17,7 +17,16 @@ export class HomeComponent implements OnInit {
 
     // console.log(us.getFriends());
 
-    this.friends = userService.getFriends();
+    this.userService.getUsers().valueChanges().subscribe((data: User[]) =>{
+
+      this.friends = data;
+
+    }, (error)=>{
+
+      console.log(error);
+      
+
+    });
 
     // let myUser: User = {
 

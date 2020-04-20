@@ -13,21 +13,22 @@ export class ConversationComponent implements OnInit {
     friendId: any;
     friends: User[];
     friend: User;
-    price: number = 78.21552454575645453123123;
-    today: any = Date.now();
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
 
     this.friendId = this.activatedRoute.snapshot.params['uid'];
 
-    this.friends = this.userService.getFriends();
+    this.userService.getUserById(this.friendId).valueChanges().subscribe((data: User) =>{
 
+      this.friend = data;
+      console.log(this.friend);
 
-    this.friend = this.friends.filter(f=>{
-      return f.uid == this.friendId;
-    })[0];
+    }, (error)=>{
 
-    console.log(this.friend);
+      console.log(error);
+
+    });
+
     
    }
 

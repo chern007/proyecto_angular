@@ -37,7 +37,7 @@
         </div>
 
         <hr>
-        <b>Amigos {{friends.length}} / {{friends.length}}</b>
+        <b *ngIf="friends">Amigos {{friends.length}} / {{friends.length}}</b>
         <ng-container *ngFor="let user of friends | search: query; let i = index" class="disblo marbo5">
             <div>
                 <span routerLink="/conversation/{{user.uid}}">

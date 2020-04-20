@@ -31,7 +31,7 @@
 
                     <input [(ngModel)]="email" class="form-control marbo15" type="email" placeholder="Ingrese email">
                     <input [(ngModel)]="password" class="form-control marbo15" type="password" placeholder="Ingrese contraseña">
-                    <input *ngIf="operation == 'register'" class="form-control marbo15" type="text"
+                    <input [(ngModel)]="nick" *ngIf="operation == 'register'" class="form-control marbo15" type="text"
                         placeholder="Ingrese nick">
 
                 </div>
