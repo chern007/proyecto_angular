@@ -24,14 +24,20 @@ export class UserService {
 
   };
 
-  createUser(user){
+  createUser(user) {
 
     return this.angulaFireDatabase.object('/users/' + user.uid).set(user);
   }
 
-  editeUser(user){
+  editeUser(user) {
 
     return this.angulaFireDatabase.object('/users/' + user.uid).set(user);
+  }
+
+  setAvatar(avatar, uid) {
+
+    return this.angulaFireDatabase.object('/users/' + uid + '/avatar').set(avatar)
+
   }
 
 }

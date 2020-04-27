@@ -8,14 +8,15 @@
 
                 <div class="avatarFrameonline">
 
-                    <img src="assets/img/generic_avatar.png" class="avatarImage img-fluid">
+                    <!-- <img src="assets/img/generic_avatar.png" class="avatarImage img-fluid"> -->
+                    <img [src]="croppedImage" class="avatarImage img-fluid">
 
                 </div>
                 <hr>
                 <div>
                     <span>Cambiar foto</span><br>
                     <label class="custom-file-upload">
-                        <input type="file">
+                        <input type="file" (change)="fileChangeEvent($event)">
                         Subir Avatar
                     </label>
                 </div>
@@ -23,6 +24,20 @@
             </div>
 
             <div id="datosProfile" class="col-md-9">
+
+                <!-- ----------------------------------------------------------------------------------------------------------- -->
+
+                <image-cropper 
+                [imageChangedEvent]="imageChangedEvent" 
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1" format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()">
+                </image-cropper>
+
+                <!-- ----------------------------------------------------------------------------------------------------------- -->
 
                 <div>
                     <label fixed>Nick</label>
