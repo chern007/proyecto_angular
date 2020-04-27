@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { RESTserviceService } from '../services/restservice.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   friends: User[];
   query:string = '';
 
-  constructor(private userService: UserService, private authenticationService: AuthenticationService, private router: Router) {
+  constructor(private userService: UserService, private authenticationService: AuthenticationService, private router: Router , private restService :RESTserviceService) {
 
     // let us: UserService = new UserService();
 
@@ -29,6 +30,9 @@ export class HomeComponent implements OnInit {
       
 
     });
+
+    //hacemos la llamada al rest de peliculas para probar que funcione correctamente el modulo HttpClient
+    console.log(restService.getPelicula("589"));
 
     // let myUser: User = {
 
