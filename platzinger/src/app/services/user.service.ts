@@ -29,7 +29,7 @@ export class UserService {
     return this.angulaFireDatabase.object('/users/' + user.uid).set(user);
   }
 
-  editeUser(user) {
+  editUser(user) {
 
     return this.angulaFireDatabase.object('/users/' + user.uid).set(user);
   }
