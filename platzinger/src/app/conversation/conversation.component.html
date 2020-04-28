@@ -12,14 +12,25 @@
             </div>
             <div class="col-md-10 pale45 h-100">
 
-                <div>
+                <div *ngIf="friend">
                     <h4 class="enLinea"><b>{{friend.nick}}</b></h4> <small class="enLinea pale5">{{friend.status}}</small>
                 </div>
 
                 <hr>
                 <div id="conversation">
 
-                    <div class="burbujaIn"> Lorem ipsum dolor sit amet consectetur
+                    <div *ngFor="let m of conversation">
+                        <div class="float-left"><b>{{getUserNickById(m.sender)}}</b> dice: </div><br>
+
+                        <div class="burbujaIn" [ngClass]="(m.uid=='user.uid')?'my-burbujaOut':'my-burbujaIn'">
+                            {{m.text}}
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+
+                    <!-- <div class="burbujaIn"> Lorem ipsum dolor sit amet consectetur
                         adipisicing elit. Quam, aspernatur assumenda, maiores voluptatem doloremque veritatis esse
                         reiciendis quo enim, fugiat temporibus voluptate rem voluptas voluptates sit! Repellendus
                         exercitationem fugit at.
@@ -29,7 +40,7 @@
                         adipisicing elit. Quam, aspernatur assumenda, maiores voluptatem doloremque veritatis esse
                         reiciendis quo enim, fugiat temporibus voluptate rem voluptas voluptates sit! Repellendus
                         exercitationem fugit at.
-                    </div>
+                    </div> -->
 
                 </div>
 
