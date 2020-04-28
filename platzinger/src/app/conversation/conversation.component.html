@@ -50,7 +50,7 @@
             </div>
             <div class="col-md-10 pale45 h-100">
 
-                <textarea id="inputBox" class="form-control h-100">At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
+                <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" id="inputBox" class="form-control h-100">
                 </textarea>
 
             </div>
