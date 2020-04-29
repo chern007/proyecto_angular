@@ -4,6 +4,7 @@ import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { ConversationService } from '../services/conversation.service';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 @Component({
   selector: 'app-conversation',
@@ -20,8 +21,9 @@ export class ConversationComponent implements OnInit {
   textMessage: string;
   conversation: any[];
   shake: boolean = false;
+  fileToUpload: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private conversationService: ConversationService, private authenticationService: AuthenticationService) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private conversationService: ConversationService, private authenticationService: AuthenticationService, private firebaseStorage: AngularFireStorage) {
 
     this.friendId = this.activatedRoute.snapshot.params['uid'];
 
@@ -165,5 +167,45 @@ export class ConversationComponent implements OnInit {
     }
 
   }
+
+  //metodo para subir la imagen
+  uploadImage(evento: any) {
+
+    const now = Date.now();
+
+    this.fileToUpload = evento.target.files[0];
+
+    
+    console.log("Fichero a subir:");
+    console.log(this.fileToUpload);
+
+    this.firebaseStorage.ref('filesConversation/' + this.conversation_id + '_' + now + '_' + this.fileToUpload.name).put(this.fileToUpload).then((data)=>{
+
+      this.firebaseStorage.ref('filesConversation/' + this.conversation_id + '_' + now + '_' + this.fileToUpload.name).getDownloadURL().subscribe((url)=>{
+
+        alert("Imagen subida correctamente.");
+        console.log(url);
+
+      }, (error)=>{
+
+          console.log("No se ha podido obtener la URL de la imagen subida.");
+          console.log(error);
+          
+
+      })
+
+
+    }).catch((error)=>{
+
+      console.log(error);
+      
+
+
+    });
+
+  }
+
+  // metodo para introducir la imagen en una conversacion y restituirla en el panel :TODO
+  
 
 }
