@@ -19,6 +19,7 @@ export class ConversationComponent implements OnInit {
   conversation_id: string;
   textMessage: string;
   conversation: any[];
+  shake: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private conversationService: ConversationService, private authenticationService: AuthenticationService) {
 
@@ -66,7 +67,8 @@ export class ConversationComponent implements OnInit {
       timestamp: Date.now(),
       text: this.textMessage,
       sender: this.user.uid,
-      receiver: this.friend.uid
+      receiver: this.friend.uid,
+      type: 'text'
     };
 
     this.conversationService.createConversation(message).then(() => {
@@ -76,6 +78,37 @@ export class ConversationComponent implements OnInit {
 
   }
 
+  sendZumbido() {
+
+    const message = {
+      uid: this.conversation_id,
+      timestamp: Date.now(),
+      text: null,
+      sender: this.user.uid,
+      receiver: this.friend.uid,
+      type: 'zumbido'
+    };
+
+    this.conversationService.createConversation(message).then(() => {
+
+      this.doZumbido();
+    });
+
+  }
+
+  //metodo que se encarga de reproducir el zumbido
+  doZumbido() {
+
+    const audio = new Audio('assets/sound/zumbido.m4a');
+    audio.play();
+    this.shake = true;
+    window.setTimeout(() => {
+      this.shake = false;
+    }, 1000);
+
+  }
+
+
   getConversation() {
 
     this.conversationService.getConversation(this.conversation_id).valueChanges().subscribe((conv) => {
@@ -84,19 +117,28 @@ export class ConversationComponent implements OnInit {
 
       this.conversation = conv;
 
-      this.conversation.map(message=>{
+      this.conversation.map(message => {
 
         if (!message.seen) {
-          
+
           //modificamos la propiedad de visto
           message.seen = true;
           //guardamos la propiedad de visto en el mensaje
           this.conversationService.editConversation(message);
-          //reproducimos el sonido de mensaje recibido
-          const audio = new Audio('assets/sound/new_message.m4a');
-          audio.play();
-        }
 
+          if (message.type == 'text') {
+
+            //reproducimos el sonido de mensaje recibido
+            const audio = new Audio('assets/sound/new_message.m4a');
+            audio.play();
+
+          } else if (message.type == 'zumbido') {
+
+            this.doZumbido();
+
+          }
+
+        }
 
       });
 

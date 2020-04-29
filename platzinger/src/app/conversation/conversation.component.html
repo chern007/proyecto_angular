@@ -1,4 +1,4 @@
-<div id="conversationContainer" class="pato45" style="height: 80vh">
+<div id="conversationContainer" class="pato45" style="height: 80vh" [ngClass]="{'shaker': shake}">
 
     <div class="container pato45 h-100">
 
@@ -63,6 +63,26 @@
 
                 <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" id="inputBox" class="form-control h-100">
                 </textarea>
+
+                <div id="messageToolBar">
+                    <div class="item">
+                      <img src="assets/img/icons/regular_smile.gif" class="tool">
+                      <i name="caret-down"></i>
+                    </div>
+                    <div class="item">
+                      <img src="assets/img/icons/wink_smile.gif" class="tool">
+                      <i name="caret-down"></i>
+                    </div>
+                    <div class="item" (click)="sendZumbido()">
+                      <img src="assets/img/zumbido.png" class="tool">
+                    </div>
+          
+                    <a class="btn btn-primary btn-sm marri10" accept="image/*">Enviar</a>
+                    <label class="custom-file-upload">
+                      <input type="file">
+                      <i name="image"></i> Seleccionar Imagen
+                    </label>
+                  </div>
 
             </div>
 
