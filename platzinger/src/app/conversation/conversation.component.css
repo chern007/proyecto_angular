@@ -14,20 +14,20 @@
 }
 
 #conversation{
-    margin:5px; 
+    margin:5px;
     padding:5px;
     height: 90%;
     max-height: 90%;
     width: 100%;
-    overflow: auto; 
-    text-align:justify; 
+    overflow: auto;
+    text-align:justify;
 
 }
 
 .he80{
 
     height: 80%;
-    
+
 }
 
 .avatarImageUser{
@@ -43,23 +43,23 @@
     float: left;
     margin-bottom: 10px;
     padding: 5px;
-    
+
 }
 
 .burbujaOut{
-    
+
     border-radius: 5px;
     background-color: rgba(102, 238, 170, 0.75);
     width: 90% ;
     float: right;
     margin-bottom: 10px;
     padding: 5px;
-    
+
 }
 
 
 .he20{
-    
+
     height: 20%;
 
 }
@@ -91,4 +91,7 @@
     margin-right: 4px;
   }
 
-  
+  .mensajeImagen{
+    width: 100%;
+  }
+

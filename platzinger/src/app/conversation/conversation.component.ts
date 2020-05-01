@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
@@ -12,6 +12,9 @@ import { AngularFireStorage } from 'angularfire2/storage';
   styleUrls: ['./conversation.component.css']
 })
 export class ConversationComponent implements OnInit {
+
+  //hacemos un handle del panel de conversacion
+  @ViewChild('panelConversacion') private panelConversacion: ElementRef;
 
   friendId: any;
   friends: User[];
@@ -60,6 +63,20 @@ export class ConversationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  //despues de comprobar las vistas de cada componente...
+  ngAfterViewChecked() {
+
+    this.scrollToBottom();
+
+  }
+
+
+  scrollToBottom(): void {
+    try {
+      this.panelConversacion.nativeElement.scrollTop = this.panelConversacion.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
   sendMessage() {
@@ -175,30 +192,32 @@ export class ConversationComponent implements OnInit {
 
     this.fileToUpload = evento.target.files[0];
 
-    
+
     console.log("Fichero a subir:");
     console.log(this.fileToUpload);
 
-    this.firebaseStorage.ref('filesConversation/' + this.conversation_id + '_' + now + '_' + this.fileToUpload.name).put(this.fileToUpload).then((data)=>{
+    this.firebaseStorage.ref('filesConversation/' + this.conversation_id + '_' + now + '_' + this.fileToUpload.name).put(this.fileToUpload).then((data) => {
 
-      this.firebaseStorage.ref('filesConversation/' + this.conversation_id + '_' + now + '_' + this.fileToUpload.name).getDownloadURL().subscribe((url)=>{
+      this.firebaseStorage.ref('filesConversation/' + this.conversation_id + '_' + now + '_' + this.fileToUpload.name).getDownloadURL().subscribe((url) => {
 
         alert("Imagen subida correctamente.");
         console.log(url);
+        //incluimos un nuevo mensaje de imagen en la conversacion
+        this.sendImage(url);
 
-      }, (error)=>{
+      }, (error) => {
 
-          console.log("No se ha podido obtener la URL de la imagen subida.");
-          console.log(error);
-          
+        console.log("No se ha podido obtener la URL de la imagen subida.");
+        console.log(error);
+
 
       })
 
 
-    }).catch((error)=>{
+    }).catch((error) => {
 
       console.log(error);
-      
+
 
 
     });
@@ -206,6 +225,25 @@ export class ConversationComponent implements OnInit {
   }
 
   // metodo para introducir la imagen en una conversacion y restituirla en el panel :TODO
-  
+
+  sendImage(firebaseURL) {
+
+    const message = {
+      uid: this.conversation_id,
+      timestamp: Date.now(),
+      text: null,
+      sender: this.user.uid,
+      receiver: this.friend.uid,
+      type: 'image',
+      imageURL: firebaseURL
+    };
+
+    this.conversationService.createConversation(message).then(() => {
+
+      this.textMessage = '';
+    });
+
+  }
+
 
 }

@@ -1,97 +1,85 @@
-<div id="conversationContainer" class="pato45" style="height: 80vh" [ngClass]="{'shaker': shake}">
-
-    <div class="container pato45 h-100">
-
-        <div class="row he80">
-
-            <div class="col-md-2">
-                <div class="avatarFrameonline">
-                    <img src="assets/img/generic_avatar.png" class="avatarImage img-fluid">
-                </div>
-
-            </div>
-            <div class="col-md-10 pale45 h-100">
-
-                <div *ngIf="friend" class="barraDatosUsuario">
-                    <h4 class="enLinea"><b>{{friend.nick}}</b></h4> <small class="enLinea pale5">{{friend.status}}</small>
-                </div>
-
-                <hr>
-                <div id="conversation">
-
-                    <div *ngFor="let m of conversation">
-                        <div class="float-left"><b>{{getUserNickById(m.sender)}}</b> dice: </div><br>
-
-                        <div class="burbujaIn" [ngClass]="(m.uid=='user.uid')?'my-burbujaOut':'my-burbujaIn'">
-                            {{m.text}}
-                        </div>
-                        <br>
-                        <br>
-
-                    </div>
-
-                    <!-- <div class="burbujaIn"> Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Quam, aspernatur assumenda, maiores voluptatem doloremque veritatis esse
-                        reiciendis quo enim, fugiat temporibus voluptate rem voluptas voluptates sit! Repellendus
-                        exercitationem fugit at.
-                    </div>
-
-                    <div class="burbujaOut"> Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Quam, aspernatur assumenda, maiores voluptatem doloremque veritatis esse
-                        reiciendis quo enim, fugiat temporibus voluptate rem voluptas voluptates sit! Repellendus
-                        exercitationem fugit at.
-                    </div> -->
-
-                </div>
-
-
-            </div>
-
+<div id="conversationContainer" class="pato45" style="height: 80vh;" [ngClass]="{ shaker: shake }">
+  <div class="container pato45 h-100">
+    <div class="row he80">
+      <div class="col-md-2">
+        <div class="avatarFrameonline">
+          <img src="assets/img/generic_avatar.png" class="avatarImage img-fluid" />
+        </div>
+      </div>
+      <div class="col-md-10 pale45 h-100">
+        <div *ngIf="friend" class="barraDatosUsuario">
+          <h4 class="enLinea">
+            <b>{{ friend.nick }}</b>
+          </h4>
+          <small class="enLinea pale5">{{ friend.status }}</small>
         </div>
 
-        <hr>
-
-        <div class="row he20">
-
-            <div class="col-md-2 h-100">
-                <div class="avatarFrameonline h-100" >
-                    <img src="assets/img/generic_avatar.png" class="h-100 img-fluid">
-                </div>
-
+        <hr />
+        <div #panelConversacion id="conversation">
+          <div *ngFor="let m of conversation">
+            <div class="float-left">
+              <b>{{ getUserNickById(m.sender) }}</b> dice:
             </div>
-            <div class="col-md-10 pale45 h-100">
+            <br />
 
-                <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" id="inputBox" class="form-control h-100">
-                </textarea>
+            <div [ngClass]="m.uid == 'user.uid' ? 'burbujaOut' : 'burbujaIn'">
+              <!-- {{m.text}} -->
 
-                <div id="messageToolBar">
-                    <div class="item">
-                      <img src="assets/img/icons/regular_smile.gif" class="tool">
-                      <i name="caret-down"></i>
-                    </div>
-                    <div class="item">
-                      <img src="assets/img/icons/wink_smile.gif" class="tool">
-                      <i name="caret-down"></i>
-                    </div>
-                    <div class="item" (click)="sendZumbido()">
-                      <img src="assets/img/zumbido.png" class="tool">
-                    </div>
-          
-                    <a class="btn btn-primary btn-sm marri10" accept="image/*">Enviar</a>
-                    <label class="custom-file-upload">
-                      <input type="file" (change)="uploadImage($event)" accept="image/*">
-                      <i name="image"></i> Seleccionar Imagen
-                    </label>
+              <div [ngSwitch]="m.type">
+                <div *ngSwitchCase="'text'">
+                  {{ m.text }}
+                </div>
+                <div *ngSwitchCase="'zumbido'">Has enviado un zumbido.</div>
+                <div *ngSwitchCase="'image'" class="mensajeImagen">
+                  <div class="mensajeImagen text-center">
+                    <img [src]="m.imageURL" class="img-fluid" />
                   </div>
-
+                </div>
+              </div>
             </div>
-
+            <br />
+            <br />
+          </div>
         </div>
-
+      </div>
     </div>
 
-    <!-- <p>
+    <hr />
+
+    <div class="row he20">
+      <div class="col-md-2 h-100">
+        <div class="avatarFrameonline h-100">
+          <img src="assets/img/generic_avatar.png" class="h-100 img-fluid" />
+        </div>
+      </div>
+      <div class="col-md-10 pale45 h-100">
+        <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" id="inputBox" class="form-control h-100">
+        </textarea>
+
+        <div id="messageToolBar">
+          <div class="item">
+            <img src="assets/img/icons/regular_smile.gif" class="tool" />
+            <i name="caret-down"></i>
+          </div>
+          <div class="item">
+            <img src="assets/img/icons/wink_smile.gif" class="tool" />
+            <i name="caret-down"></i>
+          </div>
+          <div class="item" (click)="sendZumbido()">
+            <img src="assets/img/zumbido.png" class="tool" />
+          </div>
+
+          <a class="btn btn-primary btn-sm marri10" accept="image/*">Enviar</a>
+          <label class="custom-file-upload">
+            <input type="file" (change)="uploadImage($event)" accept="image/*" />
+            <i name="image"></i> Seleccionar Imagen
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <p>
         {{friend | json}}
     </p> -->
-
 </div>

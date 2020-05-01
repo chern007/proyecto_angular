@@ -8,6 +8,7 @@ export class ConversationService {
 
   constructor(private angularFireDatabase: AngularFireDatabase) { }
 
+  //funcion que agrega un mensaje a una conversacion
   createConversation(conversation){
 
     return this.angularFireDatabase.object('conversations/' + conversation.uid + '/' + conversation.timestamp).set(conversation);

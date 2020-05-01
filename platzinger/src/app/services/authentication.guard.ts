@@ -40,9 +40,7 @@ export class AuthenticationGuard implements CanActivate {
 
     );
 
-
     return resultObservable;
-
 
   }
 
