@@ -1,7 +1,7 @@
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog modal-lg" style="margin: 0px;">
   <div class="modal-content">
     <div class="modal-header">
-      Nueva Solicitud
+      Nueva Solicitud de amistad
       <a class="closeButton" (click)="ngActiveModal.close()">x</a>
     </div>
     <div class="modal-body" style="height: auto">
@@ -9,9 +9,10 @@
         <div class="col-md-3">
           <img src="assets/img/generic_avatar.png" class="img-fluid" />
         </div>
-        <div class="col-md-9">
-          <b>{{currentRequest.sender}}</b>
-          <small>Te ha enviado esta solicitud</small>
+        <div class="col-md-9" *ngIf="usuarioSolicitante" >
+          <b>{{usuarioSolicitante.nick}}</b>
+          <!-- <b>{{currentRequest.sender}}</b> -->
+          <small> Te ha enviado esta solicitud</small>
         </div>
         <hr />
         <div class="col-md-12">

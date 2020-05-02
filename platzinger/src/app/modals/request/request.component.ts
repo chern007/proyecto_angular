@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RequestsService } from '../../services/requests.service';
 import { UserService } from '../../services/user.service';
+import { User } from 'src/app/interfaces/user';
 
 export interface PromptModel {
   scope: any;
@@ -16,13 +17,21 @@ export interface PromptModel {
 
 export class RequestComponent implements PromptModel {
 
-  scope: any;
+  @Input() scope: any;
+  @Input() currentRequest: any;
   shouldAdd: string = 'yes';
-  currentRequest: any;
+  usuarioSolicitante: User;
 
-  constructor(public ngActiveModal: NgbActiveModal, private requestsService: RequestsService, private userService: UserService) { }
+  constructor(public ngActiveModal: NgbActiveModal, private requestsService: RequestsService, private userService: UserService) {}
 
   ngOnInit(): void {
+
+    //obtenemos el usuario antes
+    this.userService.getUserById(this.currentRequest.sender).valueChanges().subscribe((u: User) => {
+
+      this.usuarioSolicitante = u;
+
+    });
   }
 
   accept() {
@@ -31,6 +40,7 @@ export class RequestComponent implements PromptModel {
       this.requestsService.setRequestStatus(this.currentRequest, 'accepted').then((data) => {
         console.log(data);
         this.userService.addFriend(this.scope.user.uid, this.currentRequest.sender).then(() => {
+
           alert('Solicitud aceptada con exito');
         });
       }).catch((error) => {

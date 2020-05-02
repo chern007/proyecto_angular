@@ -21,6 +21,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RequestComponent } from './modals/request/request.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
     ImageCropperModule,
     NgbModule
   ],
-  providers: [],
+  providers: [RequestComponent, NgbActiveModal],
   bootstrap: [AppComponent],
   entryComponents: [RequestComponent]
 })

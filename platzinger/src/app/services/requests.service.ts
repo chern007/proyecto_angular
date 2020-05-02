@@ -26,7 +26,7 @@ export class RequestsService {
 
   getRequestForEmail(email){
 
-    const cleanEmail: string = email.receiverEmail.replace('.', ',');
+    const cleanEmail: string = email.replace('.', ',');
 
     return this.angularFireDatabase.list('requests/' + cleanEmail);
 
