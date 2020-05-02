@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user.service';
@@ -26,7 +26,7 @@ export class ConversationComponent implements OnInit {
   shake: boolean = false;
   fileToUpload: any;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private conversationService: ConversationService, private authenticationService: AuthenticationService, private firebaseStorage: AngularFireStorage) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private conversationService: ConversationService, private authenticationService: AuthenticationService, private firebaseStorage: AngularFireStorage, private renderer : Renderer2) {
 
     this.friendId = this.activatedRoute.snapshot.params['uid'];
 
@@ -75,7 +75,11 @@ export class ConversationComponent implements OnInit {
 
   scrollToBottom(): void {
     try {
+
       this.panelConversacion.nativeElement.scrollTop = this.panelConversacion.nativeElement.scrollHeight;
+      //EN ESTA FASE DEL CICLO DE VIDA NO SE PUEDE USAR RENDERER2 PERO SERIA LO CORRECTO
+      //this.renderer.setAttribute(this.panelConversacion.nativeElement, "scrollTop", this.panelConversacion.nativeElement.scrollHeight);
+
     } catch (err) { }
   }
 

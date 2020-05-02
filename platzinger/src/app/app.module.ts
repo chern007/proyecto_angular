@@ -18,15 +18,16 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { HttpClientModule } from "@angular/common/http";
-import {ImageCropperModule} from 'ngx-image-cropper';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 const appRoutes: Routes = [
-  {path:'', component:HomeComponent},
-  {path:'home', component:HomeComponent, canActivate: [AuthenticationGuard]},
-  {path:'login', component:LoginComponent},
-  {path:'conversation/:uid', component:ConversationComponent},
-  {path:'profile', component:ProfileComponent}
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'conversation/:uid', component: ConversationComponent },
+  { path: 'profile', component: ProfileComponent }
 ];
 
 @NgModule({
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     AngularFireDatabaseModule,
     HttpClientModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
