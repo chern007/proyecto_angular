@@ -6,6 +6,7 @@ import { RESTserviceService } from '../services/restservice.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RequestsService } from '../services/requests.service';
+import { RequestComponent } from '../modals/request/request.component';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   friendEmail: string = '';
   closeResult: string = '';
 
-  constructor(private userService: UserService, private authenticationService: AuthenticationService, private router: Router, private restService: RESTserviceService, private modalService: NgbModal, private requestService: RequestsService) {
+  constructor(private dialogService: NgbModal, private userService: UserService, private authenticationService: AuthenticationService, private router: Router, private restService: RESTserviceService, private modalService: NgbModal, private requestService: RequestsService) {
 
     // let us: UserService = new UserService();
 
@@ -32,7 +33,6 @@ export class HomeComponent implements OnInit {
       //OBTENEMOS EL USUARIO A TRAVES DEL ID DEL USUARIO AUTENTICADO
       this.userService.getUserById(session.uid).valueChanges().subscribe((data: User) => {
 
-        console.log("TUUUUUUUUUUUUUUSAAAAAAA--->>>");
         this.user = data;
         console.log(this.user);
 
@@ -119,6 +119,14 @@ export class HomeComponent implements OnInit {
 
 
     });
+
+  }
+
+
+  sacaModal(){
+
+    console.log("TUUUUUUUUUUUUUUSAAAAAAA--->>>");
+    const modalRef = this.modalService.open(RequestComponent);
 
   }
 

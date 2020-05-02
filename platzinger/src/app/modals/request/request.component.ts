@@ -1,26 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {RequestsService} from '../../services/requests.service';
-import {UserService} from '../../services/user.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RequestsService } from '../../services/requests.service';
+import { UserService } from '../../services/user.service';
+
+export interface PromptModel {
+  scope: any;
+  currentRequest: any;
+}
 
 @Component({
   selector: 'app-request',
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
-export class RequestComponent implements OnInit {
+
+export class RequestComponent implements PromptModel {
 
   scope: any;
   shouldAdd: string = 'yes';
   currentRequest: any;
 
-  constructor(public ngActiveModal: NgbActiveModal, private requestsService :RequestsService, private userService: UserService) { }
+  constructor(public ngActiveModal: NgbActiveModal, private requestsService: RequestsService, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-
   accept() {
+
     if (this.shouldAdd == 'yes') {
       this.requestsService.setRequestStatus(this.currentRequest, 'accepted').then((data) => {
         console.log(data);
@@ -43,6 +49,7 @@ export class RequestComponent implements OnInit {
         console.log(error);
       });
     }
-  }
+
+  }//fin funcion acept
 
 }

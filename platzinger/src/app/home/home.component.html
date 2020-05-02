@@ -6,7 +6,7 @@
 
         <div class="col-md-auto">
           <div class="avatarFrameonline">
-            <img id="homeAvatarPicture" src="./assets/img/generic_avatar.png" alt="">
+            <img id="homeAvatarPicture" src="./assets/img/generic_avatar.png" alt="" (click)="sacaModal()" >
           </div>
           <div class="col" *ngIf="user" >
             <b>{{user.nick}}</b>
