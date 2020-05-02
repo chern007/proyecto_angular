@@ -9,35 +9,40 @@ export class UserService {
 
   friends: User[];
 
-  constructor(private angulaFireDatabase: AngularFireDatabase) {
+  constructor(private angularFireDatabase: AngularFireDatabase) {
 
   }
 
   getUsers() {
 
-    return this.angulaFireDatabase.list('/users');
+    return this.angularFireDatabase.list('/users');
   }
 
   getUserById(uid) {
 
-    return this.angulaFireDatabase.object('/users/' + uid);
+    return this.angularFireDatabase.object('/users/' + uid);
 
   };
 
   createUser(user) {
 
-    return this.angulaFireDatabase.object('/users/' + user.uid).set(user);
+    return this.angularFireDatabase.object('/users/' + user.uid).set(user);
   }
 
   editUser(user) {
 
-    return this.angulaFireDatabase.object('/users/' + user.uid).set(user);
+    return this.angularFireDatabase.object('/users/' + user.uid).set(user);
   }
 
   setAvatar(avatar, uid) {
 
-    return this.angulaFireDatabase.object('/users/' + uid + '/avatar').set(avatar)
+    return this.angularFireDatabase.object('/users/' + uid + '/avatar').set(avatar)
 
+  }
+
+  addFriend(userId, friendId){
+    this.angularFireDatabase.object('users/' + userId + '/friends/' + friendId).set(friendId);
+    return this.angularFireDatabase.object('users/' + friendId + '/friends/' + userId).set(userId);
   }
 
 }

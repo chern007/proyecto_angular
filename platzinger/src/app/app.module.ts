@@ -20,6 +20,7 @@ import { AuthenticationGuard } from './services/authentication.guard';
 import { HttpClientModule } from "@angular/common/http";
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RequestComponent } from './modals/request/request.component';
 
 
 const appRoutes: Routes = [
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     MenuComponent,
     SearchPipe,
+    RequestComponent,
   ],
   imports: [
     BrowserModule,
