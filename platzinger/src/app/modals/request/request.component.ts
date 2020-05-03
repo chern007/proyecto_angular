@@ -32,6 +32,7 @@ export class RequestComponent implements PromptModel {
       this.usuarioSolicitante = u;
 
     });
+
   }
 
   accept() {

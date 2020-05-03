@@ -16,31 +16,32 @@ export class AppComponent {
   title = 'platzinger';
 
   user: User;
-  requests : any[] = [];
-  mailsShown : any[] = [];
+  requests: any[] = [];
+  mailsShown: any[] = [];
 
 
-  constructor(public router:Router, private authenticationService: AuthenticationService, private userService : UserService, private requestService: RequestsService, private requestComponent: RequestComponent, private modalService: NgbModal){
+  constructor(public router: Router, private authenticationService: AuthenticationService, private userService: UserService, private requestService: RequestsService, private requestComponent: RequestComponent, private modalService: NgbModal) {
 
-    this.authenticationService.getStatus().subscribe(status=>{
+    this.authenticationService.getStatus().subscribe(status => {
 
-      this.userService.getUserById(status.uid).valueChanges().subscribe((data : User)=>{
+      this.userService.getUserById(status.uid).valueChanges().subscribe((data: User) => {
 
         this.user = data;
 
 
 
 
-        this.requestService.getRequestForEmail(this.user.email).valueChanges().subscribe((requests: any)=>{
+        this.requestService.getRequestForEmail(this.user.email).valueChanges().subscribe((requests: any) => {
 
-          this.requests = requests.filter((r)=>{
+          this.requests = requests.filter((r) => {
 
-            return r.status != 'acepted' && r.status != 'rejected';
+            return r.status != 'accepted' && r.status != 'rejected';
 
           });
 
           //recorremos los email filtrados
-          this.requests.map((r)=>{
+          this.requests.map((r) => {
+
 
             if (this.mailsShown.indexOf(r.sender) == -1) {
               this.mailsShown.push(r.sender);
@@ -54,7 +55,7 @@ export class AppComponent {
 
           });
 
-        }, (error)=>{
+        }, (error) => {
 
           console.log(error);
 
