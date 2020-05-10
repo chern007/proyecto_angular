@@ -42,7 +42,6 @@ export class AppComponent {
           //recorremos los email filtrados
           this.requests.map((r) => {
 
-
             if (this.mailsShown.indexOf(r.sender) == -1) {
               this.mailsShown.push(r.sender);
 

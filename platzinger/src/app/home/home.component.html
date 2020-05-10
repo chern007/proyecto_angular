@@ -6,15 +6,15 @@
 
         <div class="col-md-auto">
           <div class="avatarFrameonline">
-            <img id="homeAvatarPicture" src="./assets/img/generic_avatar.png" alt="" (click)="sacaModal()" >
+            <img id="homeAvatarPicture" src="./assets/img/generic_avatar.png" alt="" (click)="sacaModal()">
           </div>
-          <div class="col" *ngIf="user" >
+          <div class="col" *ngIf="user">
             <b>{{user.nick}}</b>
             <div>
               <span>{{user.status}}</span>
               <br>
               <span>
-                < Escribe un mensaje Personal >
+                < Escribe un mensaje Personal>
               </span>
               <br>
               <a (click)="logOut()">Logout</a>
@@ -39,16 +39,22 @@
     </div>
 
     <hr>
-    <b *ngIf="friends">Amigos {{friends.length}} / {{friends.length}}</b>
-    <ng-container *ngFor="let user of friends | search: query; let i = index" class="disblo marbo5">
-      <div>
-        <span routerLink="/conversation/{{user.uid}}">
-          <img class="statusIcon" src="./assets/img/logo_live_{{user.status}}.png" alt="">
-          <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
-          <small>{{user.email}}</small>
-        </span>
-      </div>
-    </ng-container>
+    <b *ngIf="user && user.friends">Amigos {{user.friends.length}} / {{user.friends.length}}</b>
+
+    <div *ngIf="user && user.friends">
+      <!-- <ng-container *ngFor="let friend of user.friends | search: query; let i = index" class="disblo marbo5"> -->
+        <div class="disblo marbo5">
+          <!-- {{friend}} -->
+          <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid]="user"></app-contact>
+
+          <!-- <span routerLink="/conversation/{{user.uid}}">
+            <img class="statusIcon" src="./assets/img/logo_live_{{user.status}}.png" alt="">
+            <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
+            <small>{{user.email}}</small>
+          </span> -->
+        </div>
+      <!-- </ng-container> -->
+    </div>
 
   </div>
 

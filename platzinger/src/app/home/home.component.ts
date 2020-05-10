@@ -34,6 +34,14 @@ export class HomeComponent implements OnInit {
       this.userService.getUserById(session.uid).valueChanges().subscribe((data: User) => {
 
         this.user = data;
+
+        if (this.user.friends) {
+
+          this.user.friends = Object.values(this.user.friends);
+          console.log(this.user.friends);
+
+        }
+
         console.log(this.user);
 
       }, (error) => {
@@ -59,8 +67,9 @@ export class HomeComponent implements OnInit {
 
     });
 
-    //hacemos la llamada al rest de peliculas para probar que funcione correctamente el modulo HttpClient
-    console.log(restService.getPelicula("589"));
+    // //EJEMPLO PARA HACER UNA REQUEST (GET) A UN REST
+    // //hacemos la llamada al rest de peliculas para probar que funcione correctamente el modulo HttpClient
+    // console.log(restService.getPelicula("589"));
 
   }
 

@@ -8,5 +8,6 @@ friend:boolean;
 uid:any;
 status?:string;
 avatar?: string;
+friends?: string[];
 
 }
