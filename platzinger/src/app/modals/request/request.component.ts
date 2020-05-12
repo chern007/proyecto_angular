@@ -61,6 +61,8 @@ export class RequestComponent implements PromptModel {
       });
     }
 
+    this.ngActiveModal.close();
+
   }//fin funcion acept
 
 }

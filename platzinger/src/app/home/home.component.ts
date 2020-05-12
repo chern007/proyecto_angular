@@ -21,7 +21,9 @@ export class HomeComponent implements OnInit {
   friendEmail: string = '';
   closeResult: string = '';
 
-  constructor(private dialogService: NgbModal, private userService: UserService, private authenticationService: AuthenticationService, private router: Router, private restService: RESTserviceService, private modalService: NgbModal, private requestService: RequestsService) {
+  mensaje: string = '';
+
+  constructor(private userService: UserService, private authenticationService: AuthenticationService, private router: Router, private restService: RESTserviceService, private modalService: NgbModal, private requestService: RequestsService) {
 
     // let us: UserService = new UserService();
 
@@ -112,29 +114,31 @@ export class HomeComponent implements OnInit {
       timestamp: Date.now(),
       receiverEmail: this.friendEmail,
       sender: this.user.uid,
-      status: 'pending'
+      status: 'pending',
+      message: this.mensaje
 
     };
 
     //CREAMOS UNA PETICION DE AMISTAD
-    this.requestService.createRequest(request).then((data)=>{
+    this.requestService.createRequest(request).then((data) => {
 
-        alert("Solicitud enviada!");
+      alert("Solicitud enviada!");
 
-    }).catch((error)=>{
+      //cerramos el modal
+      this.modalService.dismissAll();
+
+    }).catch((error) => {
 
       console.log('Error al enviar la solicitud de amistad.');
       console.log(error);
-
 
     });
 
   }
 
 
-  sacaModal(){
+  sacaModal() {
 
-    console.log("TUUUUUUUUUUUUUUSAAAAAAA--->>>");
     const modalRef = this.modalService.open(RequestComponent);
 
   }

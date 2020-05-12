@@ -1,5 +1,5 @@
 <div class="modal-dialog modal-lg" style="margin: 0px;">
-  <div class="modal-content">
+  <div class="modal-content" style="height: auto">
     <div class="modal-header">
       Nueva Solicitud de amistad
       <a class="closeButton" (click)="ngActiveModal.close()">x</a>
@@ -9,7 +9,7 @@
         <div class="col-md-3">
           <img src="assets/img/generic_avatar.png" class="img-fluid" />
         </div>
-        <div class="col-md-9" *ngIf="usuarioSolicitante" >
+        <div class="col-md-9" *ngIf="usuarioSolicitante">
           <b>{{usuarioSolicitante.nick}}</b>
           <!-- <b>{{currentRequest.sender}}</b> -->
           <small> Te ha enviado esta solicitud</small>
@@ -18,14 +18,27 @@
         <div class="col-md-12">
           <h4>Deseas agregar a esta persona?</h4>
           <br />
-          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="yes" id="add-yes"> <label for="add-yes">Si quiero agregarlo</label> <br />
+          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="yes" id="add-yes"> <label for="add-yes">Si
+            quiero agregarlo</label> <br />
 
-          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="no" id="add-no"> <label for="add-no">No quiero agregarlo</label> <br />
+          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="no" id="add-no"> <label for="add-no">No
+            quiero agregarlo</label> <br />
 
-          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="later" id="add-later"> <label for="add-later">Decido despuees</label> <br />
+          <input type="radio" name="addToMsn" [(ngModel)]="shouldAdd" value="later" id="add-later"> <label
+            for="add-later">Decido despuees</label> <br />
         </div>
+
+        <br>
+        <br>
+
+        <div class="col-md-12" style="height: auto">
+          <p>Mensaje: </p>
+          <textarea [(ngModel)]="currentRequest.message" id="messageBox" class="form-control" style="min-height: 10vh;" readonly></textarea>
+        </div>
+
       </div>
     </div>
+    <!-- <br> -->
     <div class="modal-footer">
       <a class="btn btn-primary" (click)="accept()">Ok</a>
       <a class="btn btn-default" (click)="ngActiveModal.close()">Cerrar</a>
