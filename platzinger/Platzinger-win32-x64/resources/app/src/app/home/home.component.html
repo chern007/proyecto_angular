@@ -1,0 +1,94 @@
+<div class="homeContainer">
+
+  <div class="whiteBorderGlassBox">
+    <div class="homeHeadContainer">
+      <div class="row">
+
+        <div class="col-md-auto">
+          <div class="avatarFrameonline">
+            <img id="homeAvatarPicture" src="./assets/img/generic_avatar.png" alt="" (click)="sacaModal()">
+          </div>
+          <div class="col" *ngIf="user">
+            <b>{{user.nick}}</b>
+            <div>
+              <span>{{user.status}}</span>
+              <br>
+              <span>
+                < Escribe un mensaje Personal>
+              </span>
+              <br>
+              <a (click)="logOut()">Logout</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="whiteContainerPadded marto15">
+
+    <div class="row">
+      <div class="col">
+        <input class="form-control" type="text" placeholder="Buscar Amigo" [(ngModel)]="query">
+      </div>
+      <div class="col-md-auto">
+        <img (click)="open(content)" class="icon" id="homeAvatarPicture" src="./assets/img/logo_live_add.png" alt="">
+
+      </div>
+    </div>
+
+    <hr>
+    <b *ngIf="user && user.friends">Amigos {{user.friends.length}} / {{user.friends.length}}</b>
+
+    <div *ngIf="user && user.friends">
+      <!-- <ng-container *ngFor="let friend of user.friends | search: query; let i = index" class="disblo marbo5"> -->
+        <div class="disblo marbo5">
+          <!-- {{friend}} -->
+          <app-contact class="col-md-12" *ngFor="let user of user.friends" [uid]="user"></app-contact>
+
+          <!-- <span routerLink="/conversation/{{user.uid}}">
+            <img class="statusIcon" src="./assets/img/logo_live_{{user.status}}.png" alt="">
+            <b>{{user.nick}}</b> - {{user.subnick || 'No subnick'}}
+            <small>{{user.email}}</small>
+          </span> -->
+        </div>
+      <!-- </ng-container> -->
+    </div>
+
+  </div>
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Agregar amigo con email</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div>
+
+        <b>Ingresa el Email de tu amigo</b>
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail"
+          (keyup.enter)="sendRequest()">
+        <br>
+        <p>Mensaje de invitación:</p>
+        <div>
+          <textarea [(ngModel)]="mensaje" id="mensajeInvitacion" class="form-control h-100" placeholder="Introduzca aquí su mensaje."></textarea>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Mandar invitación</button>
+    </div>
+  </ng-template>
+
+
+
+
+
+</div>

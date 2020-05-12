@@ -1,0 +1,97 @@
+#conversationContainer{
+
+    background-image: url("/assets/img/msnbg.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+}
+
+.barraDatosUsuario{
+
+    height: 5%;
+    max-height: 5%;
+
+}
+
+#conversation{
+    margin:5px;
+    padding:5px;
+    height: 90%;
+    max-height: 90%;
+    width: 100%;
+    overflow: auto;
+    text-align:justify;
+
+}
+
+.he80{
+
+    height: 80%;
+
+}
+
+.avatarImageUser{
+
+    height: 100%;
+}
+
+.burbujaIn{
+
+    border-radius: 5px;
+    background-color: rgba(44, 199, 219, 0.75);
+    width: 90% ;
+    float: left;
+    margin-bottom: 10px;
+    padding: 5px;
+
+}
+
+.burbujaOut{
+
+    border-radius: 5px;
+    background-color: rgba(102, 238, 170, 0.75);
+    width: 90% ;
+    float: right;
+    margin-bottom: 10px;
+    padding: 5px;
+
+}
+
+
+.he20{
+
+    height: 20%;
+
+}
+
+.enLinea{
+
+    display: inline-block;
+}
+
+
+#messageToolBar {
+    border: 2px solid #cfd1d5;
+    padding: 5px;
+    border-top: 0px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,e9ebf0+50,f1f3f8+87,fff9f9+100 */
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #e9ebf0 50%, #f1f3f8 87%, #fff9f9 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e9ebf0 50%,#f1f3f8 87%,#fff9f9 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #ffffff 0%,#e9ebf0 50%,#f1f3f8 87%,#fff9f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fff9f9',GradientType=0 ); /* IE6-9 */
+  }
+  #messageToolBar > .item {
+    display: inline-block;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  #messageToolBar > .item > .tool {
+    height: 24px;
+    margin-right: 4px;
+  }
+
+  .mensajeImagen{
+    width: 100%;
+  }
+
